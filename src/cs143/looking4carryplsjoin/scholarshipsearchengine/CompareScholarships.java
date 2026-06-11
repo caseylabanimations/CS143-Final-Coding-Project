@@ -3,7 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 public class CompareScholarships {
 	//private fields
-	ArrayList<Scholarship> scholarships = new ArrayList<Scholarship>(); //option 1: initialize immediately
+	ArrayList<Scholarship> scholarships = new ArrayList<Scholarship>();
+    ArrayList<Scholarship> eligibleSchol = new ArrayList<Scholarship>();
 	
 	private void fillScholarships() {
 		scholarships.add(new MicrosoftScholarship());
@@ -26,7 +27,6 @@ public class CompareScholarships {
     //if user is first gen and scholarship requires not first gen
     public ArrayList<Scholarship> returnEligible(User user) {
 		fillScholarships();
-        ArrayList<Scholarship> eligibleSchol = new ArrayList<Scholarship>();
         boolean eligibleForScholarship = true;
         for (Scholarship ss : scholarships) {
             if (user.getGPA() <= ss.getGPA()) {
@@ -62,6 +62,16 @@ public class CompareScholarships {
 	{
 		fillScholarships();
 		for (Scholarship ss: scholarships)
+		{
+			ss.printDescription();
+			System.out.println();		
+		}
+	}
+
+    // Display all eligible scholarships after compared
+	public void displayEligibleScholarships()
+	{
+		for (Scholarship ss: eligibleSchol)
 		{
 			ss.printDescription();
 			System.out.println();		

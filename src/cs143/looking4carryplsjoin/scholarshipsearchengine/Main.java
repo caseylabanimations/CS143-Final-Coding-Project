@@ -18,7 +18,7 @@ public class Main {
 		String major;
 		boolean isFirstGen;
 		boolean isWashingtonResident;
-		double scholarshipAmount = 0; //at beginning user has no scholarships + this is for ACCEPTED scholarshisp only
+		double scholarshipAmount = 0; //at beginning user has no scholarships + this is for ACCEPTED scholarships only
 		
 		//use static methods to initialize fields to initialize user constructor
 		//For TT
@@ -79,7 +79,7 @@ public class Main {
 				// Add up all of eligible scholarships money
 				double elegibleMoneyAmount = 0.00;
 				for (int i = 0; i < elegibleScholarships.size(); i++)
-				{
+				{	
 					elegibleMoneyAmount += elegibleScholarships.get(i).getScholarshipAmount();
 				}
 				System.out.println("You're eligible for $" + elegibleMoneyAmount + " total!");
