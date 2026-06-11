@@ -18,7 +18,7 @@ public class CompareScholarships {
 		scholarships.add(new WomenInStemScholarship());
 	}
 	
-    //Remove scholarship from list if:
+    //Add scholarship to returned list if all return false:
     //Race, Gender, Major are not "Any" and do not match user inputs
     //if user gpa less than scholarship minimum gpa
     //if user income greater than maximum income for scholarship
@@ -26,31 +26,35 @@ public class CompareScholarships {
     //if user is first gen and scholarship requires not first gen
     public ArrayList<Scholarship> returnEligible(User user) {
 		fillScholarships();
+        ArrayList<Scholarship> eligibleSchol = new ArrayList<Scholarship>();
+        boolean eligibleForScholarship = true;
         for (Scholarship ss : scholarships) {
             if (user.getGPA() <= ss.getGPA()) {
-                scholarships.remove(ss);
+                eligibleForScholarship = false;
             }
             else if (user.getIncome() >= ss.getIncome()) {
-                scholarships.remove(ss);
+                eligibleForScholarship = false;
             }
             else if ((!ss.getRace().toLowerCase().equals("any")) && (!ss.getRace().toLowerCase().equals(user.getRace()))) {
-                scholarships.remove(ss);
+                eligibleForScholarship = false;
             }
             else if ((!ss.getGender().toLowerCase().equals("any")) && (!ss.getGender().toLowerCase().equals(user.getGender()))) {
-                scholarships.remove(ss);
+                eligibleForScholarship = false;
             }
             else if ((!ss.getMajor().toLowerCase().equals("any")) && (!ss.getMajor().toLowerCase().equals(user.getMajor()))) {
-                scholarships.remove(ss);
+                eligibleForScholarship = false;
             }
             else if ((user.getIsWashingtonResident() == false) && (ss.getIsWashingtonResident() == true)) {
-                scholarships.remove(ss);
+                eligibleForScholarship = false;
             }
             else if ((user.getIsFirstGen() == true) && (ss.getIsFirstGen() == false)) {
-                scholarships.remove(ss);
+                eligibleForScholarship = false;
+            }
+            if (eligibleForScholarship = true) {
+                eligibleSchol.add(ss);
             }
         }
-        
-        return scholarships;
+        return eligibleSchol;
     }
 
 	// Display all scholarships in CompareScholarships
